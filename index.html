@@ -357,9 +357,158 @@
       .fade-in.delay-3 {
         animation-delay: 0.6s;
       }
+
+      /* Modern Loading Animation Styles */
+      .loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--black);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.8s, visibility 0.8s;
+      }
+
+      .loader-wrapper.fade-out {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .creative-loader {
+        position: relative;
+        width: 200px;
+        height: 200px;
+      }
+
+      .loader-circle {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 46, 147, 0.1);
+        border-top: 2px solid var(--pink);
+        animation: spin 3s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        box-shadow: 0 0 20px rgba(255, 46, 147, 0.1);
+      }
+
+      .loader-circle:nth-child(2) {
+        width: 80%;
+        height: 80%;
+        top: 10%;
+        left: 10%;
+        border-left: 2px solid var(--light-pink);
+        border-top: 2px solid transparent;
+        animation: spin 2.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite reverse;
+      }
+
+      .loader-circle:nth-child(3) {
+        width: 60%;
+        height: 60%;
+        top: 20%;
+        left: 20%;
+        border-bottom: 2px solid var(--pink);
+        border-top: 2px solid transparent;
+        animation: spin 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+      }
+
+      .loader-logo {
+        position: absolute;
+        width: 40%;
+        height: 40%;
+        top: 30%;
+        left: 30%;
+        background: url('img/mylogo.png') center/contain no-repeat;
+        animation: pulse 2s ease-in-out infinite;
+        filter: drop-shadow(0 0 10px rgba(255, 46, 147, 0.3));
+      }
+
+      .loader-text {
+        position: absolute;
+        width: 300px;
+        text-align: center;
+        bottom: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: 'Poppins', sans-serif;
+      }
+
+      .loader-text span {
+        display: inline-block;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: transparent;
+        background: linear-gradient(90deg, var(--pink), var(--light-pink));
+        -webkit-background-clip: text;
+        background-clip: text;
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+        animation: fadeInUpScale 0.5s ease forwards, glow 1s ease-in-out infinite;
+        text-shadow: 0 0 20px rgba(255, 46, 147, 0.5);
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.1); opacity: 1; }
+      }
+
+      @keyframes fadeInUpScale {
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes glow {
+        0%, 100% { text-shadow: 0 0 10px rgba(255, 46, 147, 0.7); }
+        50% { text-shadow: 0 0 20px rgba(255, 46, 147, 1); }
+      }
+
+      .progress-bar {
+        position: absolute;
+        bottom: -85px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 3px;
+        background: rgba(255, 46, 147, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(255, 46, 147, 0.2);
+      }
+
+      .progress {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--pink), var(--light-pink));
+        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 0 15px var(--pink);
+      }
     </style>
   </head>
   <body>
+    <!-- Add this right after opening body tag -->
+    <div class="loader-wrapper">
+      <div class="creative-loader">
+        <div class="loader-circle"></div>
+        <div class="loader-circle"></div>
+        <div class="loader-circle"></div>
+        <div class="loader-logo"></div>
+        <div class="loader-text"></div>
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar fixed-top py-3">
       <div class="container-fluid flex items-center justify-between">
@@ -910,7 +1059,7 @@
               <span class="tech-badge">JavaScript</span>
             </div>
             <a
-              href="img/war.jpeg"
+              href="https://war.bccbsis.com/war/signup.php"
               class="view-project-link"
               >View Project →</a
             >
@@ -970,7 +1119,7 @@
               <span class="tech-badge">JavaScript</span>
             </div>
             <a
-              href="img/coffee.png"
+              href="eyes/index.html"
               class="view-project-link"
               >View Project →</a
             >
@@ -1534,12 +1683,91 @@
           <div class="flex items-center space-x-2">
             <span class="text-gray-400 text-sm">Made with</span>
             <i class="fas fa-heart text-pink-500 animate-pulse"></i>
-            <span class="text-gray-400 text-sm">by Jed Ramos</span>
+            <span class="text-gray-400 text-sm">by</span>
+            <div class="animate-text">
+              <span class="letter" style="--delay: 0s">J</span>
+              <span class="letter" style="--delay: 0.2s">E</span>
+              <span class="letter" style="--delay: 0.4s">D</span>
+            </div>
           </div>
         </div>
       </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const loaderText = document.querySelector('.loader-text');
+        const progress = document.querySelector('.progress');
+        const messages = [
+          '✨ Welcome to my portfolio',
+          '🎨 Crafting experiences',
+          '💫 Sprinkling some magic',
+          '🚀 Preparing for launch',
+          '🌟 Almost ready'
+        ];
+        let currentMessage = 0;
+        
+        function updateLoaderText() {
+          loaderText.innerHTML = '';
+          messages[currentMessage].split('').forEach((letter, i) => {
+            const span = document.createElement('span');
+            span.textContent = letter;
+            span.style.animationDelay = `${i * 0.03}s`;
+            if (letter === ' ') {
+              span.style.marginRight = '0.3em';
+            }
+            loaderText.appendChild(span);
+          });
+        }
+
+        function updateProgress() {
+          const increment = 100 / (messages.length - 1);
+          const currentProgress = currentMessage * increment;
+          progress.style.width = `${currentProgress}%`;
+        }
+
+        updateLoaderText();
+        updateProgress();
+
+        const messageInterval = setInterval(() => {
+          currentMessage++;
+          if (currentMessage >= messages.length) {
+            clearInterval(messageInterval);
+            progress.style.width = '100%';
+            
+            setTimeout(() => {
+              loaderText.innerHTML = '';
+              messages[messages.length - 1].split('').forEach((letter, i) => {
+                const span = document.createElement('span');
+                span.textContent = letter;
+                span.style.animationDelay = `${i * 0.03}s`;
+                span.style.animation = 'fadeInUpScale 0.5s ease forwards, glow 1s ease-in-out infinite';
+                loaderText.appendChild(span);
+              });
+              
+              setTimeout(() => {
+                document.querySelector('.loader-wrapper').classList.add('fade-out');
+              }, 800);
+            }, 400);
+            return;
+          }
+          updateLoaderText();
+          updateProgress();
+        }, 1800);
+
+        window.addEventListener('load', () => {
+          if (currentMessage < messages.length - 1) {
+            clearInterval(messageInterval);
+            currentMessage = messages.length - 1;
+            updateLoaderText();
+            progress.style.width = '100%';
+            setTimeout(() => {
+              document.querySelector('.loader-wrapper').classList.add('fade-out');
+            }, 800);
+          }
+        });
+      });
+    </script>
   </body>
 </html>
